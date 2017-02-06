@@ -25,7 +25,7 @@ class Totp extends Hotp
 
         // Get the current unix timestamp if one isn't given
         if (is_null($time)) {
-            $time = (new DateTime())->getTimestamp();
+            $time = (new \DateTime())->getTimestamp();
         }
 
         // Calculate the count

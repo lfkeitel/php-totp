@@ -7,24 +7,10 @@
  *
  */
 
-function base32_decode($str)
-{
-    $str = strtolower($str);
-    $str = str_replace(' ', '', $str);
-    $alphabet = 'abcdefghijklmnopqrstuvwxyz234567';
-    $tmp = '';
+include __DIR__.'/vendor/autoload.php';
 
-    foreach (str_split($str) as $c) {
-        if (($v = strpos($alphabet, $c)) === false) {
-            $v = 0;
-        }
-        $tmp .= sprintf('%05b', $v);
-    }
-
-    $args = array_map('bindec', str_split($tmp, 8));
-    array_unshift($args, 'C*');
-    return rtrim(call_user_func_array('pack', $args), "\0");
-}
+use lfkeitel\phptotp\Totp;
+use lfkeitel\phptotp\Base32;
 
 $key = '';
 
@@ -40,8 +26,6 @@ if ($argc == 2) {
     }
 }
 
-$key = base32_decode($key);
-
-include 'totp.php';
+$key = Base32::decode($key);
 
 echo "Token: " . (new Totp())->GenerateToken($key) . "\n";

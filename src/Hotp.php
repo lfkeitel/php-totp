@@ -62,4 +62,18 @@ class Hotp
 
         return $code % pow(10, $length);
     }
+
+    public static function GenerateSecret($length = 16)
+    {
+        if ($length % 8 != 0) {
+            throw new \Exception("Length must be a multiple of 8");
+        }
+
+        $secret = openssl_random_pseudo_bytes($length, $strong);
+        if (!$strong) {
+            throw new \Exception("Random string generation was not strong");
+        }
+
+        return $secret;
+    }
 }
