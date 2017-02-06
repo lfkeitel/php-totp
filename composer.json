@@ -1,7 +1,6 @@
 {
     "name": "lfkeitel/phptotp",
     "description": "TOTP/HOTP library for PHP",
-    "version": "1.0.0",
     "keywords": [
         "totp",
         "hotp",
