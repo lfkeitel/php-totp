@@ -1,6 +1,9 @@
 <?php
 
-include 'totp.php';
+include __DIR__.'/../vendor/autoload.php';
+
+use lfkeitel\phptotp\Hotp;
+use lfkeitel\phptotp\Totp;
 
 $key = '12345678901234567890';
 
@@ -73,4 +76,8 @@ foreach ($totp_tests as $test) {
 
 if (!$totp_failed) {
     echo "TOTP tests passed\n";
+}
+
+if ($hotp_failed || $totp_failed) {
+    exit(1);
 }

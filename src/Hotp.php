@@ -1,5 +1,7 @@
 <?php
 
+namespace lfkeitel\phptotp;
+
 class Hotp
 {
     protected $algo;
@@ -26,7 +28,7 @@ class Hotp
         // the counter value can be more than one byte long,
         // so we need to pack it down properly.
         $cur_counter = array(0, 0, 0, 0, 0, 0, 0, 0);
-        for($i = 7; $i >= 0; $i--) {
+        for ($i = 7; $i >= 0; $i--) {
             $cur_counter[$i] = pack('C*', $counter);
             $counter = $counter >> 8;
         }
@@ -47,7 +49,7 @@ class Hotp
         $hmac_result = [];
 
         // Convert to decimal
-        foreach(str_split($hash, 2) as $hex) {
+        foreach (str_split($hash, 2) as $hex) {
             $hmac_result[] = hexdec($hex);
         }
 

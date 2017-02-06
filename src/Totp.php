@@ -1,6 +1,6 @@
 <?php
 
-include "hotp.php";
+namespace lfkeitel\phptotp;
 
 class Totp extends Hotp
 {
